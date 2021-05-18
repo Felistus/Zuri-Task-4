@@ -12,16 +12,22 @@
         - convertFahrToCelsius({temp: 0}) should return `{temp: 0} is not a valid number but a/an object.`
 */
 
-let answer;
-let formula = (Fahr) => {
+let convertFormula = (Fahr) => {
     return C = (Fahr - 32) * 5/9;
 }
+
 let convertFahrToCelsius = (temperature) => {
-    if ( isNaN(temperature) ) {
-        return `${temperature} is not a valid number but a/an ${typeof temperature}`
+    let answer;
+    
+    if ( Array.isArray(temperature)  ) {
+        return `[${temperature}] is not a valid number but an Array `
     } else {
-        answer = formula(temperature);
-        return `${answer.toFixed(4)} deg C`;
+        if ( isNaN(temperature) ) {
+            return `${temperature} is not a valid number but a/an ${typeof temperature}`
+        } else {
+            answer = convertFormula(temperature);
+            return `${answer.toFixed(4)} deg C`;
+        }
     }
 }
 convertFahrToCelsius( 0 )
